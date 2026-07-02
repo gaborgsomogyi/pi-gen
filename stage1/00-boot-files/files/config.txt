@@ -16,3 +16,7 @@ dtparam=spi=on
 gpio=10=ip,np
 gpio=9=op,dh
 
+[pi5]
+dtoverlay=nospi10
+
+[all]
