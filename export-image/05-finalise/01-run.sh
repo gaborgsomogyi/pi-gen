@@ -82,6 +82,15 @@ rm -f "${ROOTFS_DIR}/etc/vnc/updateid"
 		echo "Skipped"
 	fi
 	
+	echo -n "Configuring labwc user session rotation: "
+	if [[ -f "${ROOTFS_DIR}/etc/xdg/labwc/autostart" ]]; then
+		sed -i '1 a wlr-randr --output DSI-1 --transform 270 &' "${ROOTFS_DIR}/etc/xdg/labwc/autostart"
+		sed -i '2 a wlr-randr --output DSI-2 --transform 270 &' "${ROOTFS_DIR}/etc/xdg/labwc/autostart"
+		echo "Done"
+	else
+		echo "Skipped"
+	fi
+
 	echo -n "Configuring Wayfire: "
 	if [[ -d "${ROOTFS_DIR}/etc/wayfire" ]]; then
 		sed -i '1 a binding_light_up=KEY_BRIGHTNESSUP' "${ROOTFS_DIR}/etc/wayfire/template.ini"
